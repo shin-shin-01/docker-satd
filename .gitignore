@@ -1,0 +1,10 @@
+*.DS_Store*
+ignore/*
+*.ipynb_checkpoints/*
+tmp/*
+result/*
+count/*
+preprocessed/*
+preprocessed_rename/*
+onehot-encoding/*
+saikyo*
