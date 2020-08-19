@@ -25,13 +25,17 @@ def CheckKeyWords(log, comments):
 
 
 
-def main(debt):
+def main(debt, other=False):
     # 最強データ読み込み
     df = pd.read_csv('saikyo-data.csv', index_col=0)
     ## クラス分類でソートしておく
     df = df.sort_values('class')
 
-    if debt:## SATDであるものを対象とする
+    if other: ## 分類作業を行なっていないプロジェクト達
+        df.fillna({"class":0}, inplace=True)
+        df = df[df["class"] == 0]
+
+    elif debt:## SATDであるものを対象とする
         ## クラス分類が存在しないものを削除
         df.dropna(subset=['class'], inplace=True)
         ## クラスが non-debt は削除
@@ -39,6 +43,7 @@ def main(debt):
     else:## non-debt を対象とする
         ## クラスが non-debt のみ利用
         df = df[df["class"] == "non-debt"]
+    
 
     ## 結果格納ディレクトリの中身
     result_dir = os.listdir(path='./result')
@@ -55,7 +60,9 @@ def main(debt):
         index = str(index)
 
         ## filename
-        if debt:
+        if other:
+            output_filename = f'{index}_{project_name}_Uncategorized.csv'
+        elif debt:
             output_filename = f'{index}_{project_name}.csv'
         else:
             output_filename = f'{index}_{project_name}_nondebt.csv'
@@ -129,4 +136,5 @@ def main(debt):
 
 if __name__ == "__main__":
     # main(debt=True)
-    main(debt=False)
+    # main(debt=False)
+    main(debt=False, other=True)
