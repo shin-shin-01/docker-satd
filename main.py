@@ -60,9 +60,7 @@ def main(debt, other=False):
         index = str(index)
 
         ## filename
-        if other:
-            output_filename = f'{index}_{project_name}_Uncategorized.csv'
-        elif debt:
+        if debt:
             output_filename = f'{index}_{project_name}.csv'
         else:
             output_filename = f'{index}_{project_name}_nondebt.csv'
