@@ -2,9 +2,10 @@
 ignore/*
 *.ipynb_checkpoints/*
 tmp/*
-result/*
-count/*
-preprocessed/*
-preprocessed_rename/*
-onehot-encoding/*
-saikyo*
+0-clone-repository/*
+1-git_log/*
+2-get_targetfile/*
+3-renamed_files/*
+4-onehot_encoding/*
+5-count_commit/*
+oritin_saikyo-data.csv
